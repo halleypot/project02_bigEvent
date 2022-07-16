@@ -15,6 +15,7 @@ $(function () {
 // form validation
 let form = layui.form
 
+//customerized form validation
 form.verify({
     pass: [
         /^[\S]{6,12}$/
@@ -28,20 +29,22 @@ form.verify({
     }
 })
 
-
 // create layer object
 let layer = layui.layer
 
-//submit a form
+//注册用户名 表单验证
 $('#form-register').on('submit', function (e) {
     e.preventDefault()
 
-    let data = $(this).serialize()
     
+
+    let data = $(this).serialize()
+
+    // send post request
     $.post('/api/reguser',
         data,
         function (res) {
-            if(res.status !== 0) {
+            if (res.status !== 0) {
                 return layer.msg(res.message)
             }
             // if registration passed, tip user and swtich to login page
@@ -50,4 +53,26 @@ $('#form-register').on('submit', function (e) {
             $('#signIn').click()
         })
 
+})
+
+// 登录验证
+$('#form-login').on('submit', function(e) {
+    e.preventDefault()
+
+    let data = $(this).serialize()
+
+    $.post('/api/login',data, function(res) {
+        //if wrong username or password
+        if (res.status !== 0) {
+
+            return layer.msg(rse.message)
+        }
+
+        //if log in successfully
+        layer.msg(res.message)
+        //store token in localStorage
+        localStorage.setItem('token', res.token)
+
+        location.href ='/index.html'
+    })
 })
