@@ -12,20 +12,20 @@ $(function () {
     })
 
 
-    // form validation
-    let form = layui.form
+// form validation
+let form = layui.form
 
-    form.verify({
-        pass: [
-            /^[\S]{6,12}$/
-            , '密码必须6到12位，且不能出现空格'
-        ],
-        repass: function (value) {
-            let pass = $('.reg-box [name=password]').val()
-            if (value !== pass) {
-                return "two password must be the same"
-            }
+form.verify({
+    pass: [
+        /^[\S]{6,12}$/
+        , '密码必须6到12位，且不能出现空格'
+    ],
+    repass: function (value) {
+        let pass = $('.reg-box [name=password]').val()
+        if (value !== pass) {
+            return "two password must be the same"
         }
+    }
     })
 
 
@@ -73,5 +73,30 @@ $(function () {
             // goto index page
             location.href = '/15_大事件案例/home/index.html'
         })
+
+})
+
+
+// 登录验证
+$('#form-login').on('submit', function(e) {
+    e.preventDefault()
+
+    let data = $(this).serialize()
+
+    $.post('/api/login',data, function(res) {
+        //if wrong username or password
+        if (res.status !== 0) {
+
+            return layer.msg(res.message)
+        }
+
+        //if log in successfully
+        layer.msg(res.message)
+        //store token in localStorage
+        localStorage.setItem('token', res.token)
+
+        location.href ='/15_大事件案例/home/index.html'
     })
+})
+
 })
