@@ -63,7 +63,7 @@ $('#form-login').on('submit', function(e) {
         //if wrong username or password
         if (res.status !== 0) {
 
-            return layer.msg(rse.message)
+            return layer.msg(res.message)
         }
 
         //if log in successfully
@@ -71,7 +71,7 @@ $('#form-login').on('submit', function(e) {
         //store token in localStorage
         localStorage.setItem('token', res.token)
 
-        location.href ='/index.html'
+        location.href ='/15_大事件案例/home/index.html'
     })
 })
 
