@@ -51,3 +51,26 @@ $('#form-register').on('submit', function (e) {
         })
 
 })
+
+
+// 登录验证
+$('#form-login').on('submit', function(e) {
+    e.preventDefault()
+
+    let data = $(this).serialize()
+
+    $.post('/api/login',data, function(res) {
+        //if wrong username or password
+        if (res.status !== 0) {
+
+            return layer.msg(rse.message)
+        }
+
+        //if log in successfully
+        layer.msg(res.message)
+        //store token in localStorage
+        localStorage.setItem('token', res.token)
+
+        location.href ='/index.html'
+    })
+})
