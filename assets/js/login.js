@@ -12,71 +12,67 @@ $(function () {
     })
 
 
-    // form validation
-    let form = layui.form
+// form validation
+let form = layui.form
 
-    //customerized form validation
-    form.verify({
-        pass: [
-            /^[\S]{6,12}$/
-            , '密码必须6到12位，且不能出现空格'
-        ],
-        repass: function (value) {
-            let pass = $('.reg-box [name=password]').val()
-            if (value !== pass) {
-                return "two password must be the same"
-            }
+form.verify({
+    pass: [
+        /^[\S]{6,12}$/
+        , '密码必须6到12位，且不能出现空格'
+    ],
+    repass: function (value) {
+        let pass = $('.reg-box [name=password]').val()
+        if (value !== pass) {
+            return "two password must be the same"
         }
-    })
-
-    // create layer object
-    let layer = layui.layer
-
-    //注册用户名 表单验证
-    $('#form-register').on('submit', function (e) {
-        e.preventDefault()
+    }
+})
 
 
+// create layer object
+let layer = layui.layer
 
-        let data = $(this).serialize()
+//submit a form
+$('#form-register').on('submit', function (e) {
+    e.preventDefault()
 
-        // send post request
-        $.post('/api/reguser',
-            data,
-            function (res) {
-                if (res.status !== 0) {
-                    return layer.msg(res.message)
-                }
-                // if registration passed, tip user and swtich to login page
-                layer.msg(res.message)
-                //go to login page
-                $('#signIn').click()
-            })
-
-    })
-
-    // 登录验证
-    $('#form-login').on('submit', function (e) {
-        e.preventDefault()
-
-        let data = $(this).serialize()
-
-        $.post('/api/login', data, function (res) {
-            //if wrong username or password
-            if (res.status !== 0) {
-
-                return layer.msg(rse.message)
+    let data = $(this).serialize()
+    
+    $.post('/api/reguser',
+        data,
+        function (res) {
+            if(res.status !== 0) {
+                return layer.msg(res.message)
             }
-
-            //if log in successfully
+            // if registration passed, tip user and swtich to login page
             layer.msg(res.message)
-            //store token in localStorage
-            localStorage.setItem('token', res.token)
-
-            location.href = '/index.html'
+            //go to login page
+            $('#signIn').click()
         })
+
+})
+
+
+// 登录验证
+$('#form-login').on('submit', function(e) {
+    e.preventDefault()
+
+    let data = $(this).serialize()
+
+    $.post('/api/login',data, function(res) {
+        //if wrong username or password
+        if (res.status !== 0) {
+
+            return layer.msg(rse.message)
+        }
+
+        //if log in successfully
+        layer.msg(res.message)
+        //store token in localStorage
+        localStorage.setItem('token', res.token)
+
+        location.href ='/index.html'
     })
-
-
+})
 
 })
