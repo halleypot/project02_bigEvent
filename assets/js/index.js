@@ -60,25 +60,15 @@ function getUserInfo() {
         //     Authorization: localStorage.getItem('token')
         // },
         success: function (res) {
+            console.log(res);
             if (res.status !== 0) {
                 return layer.msg(res.message || '获取用户失败')
-                // remove token and relocate
-                // localStorage.removeItem('token')
-
-                // return location.href = '15_大事件案例/home/login.html'
+                
             }
 
             //渲染用户头像
             renderAvatar(res.data)
         },
-        // 无论登录成功或失败，都要进入complete函数
-        complete: function(res) {
-            // console.log(res);
-            if (res.responseJSON.status === 1 || res.responseJSON.status === "身份验证失败")
-
-            localStorage.removeItem('token')
-
-            location.href = 'login.html'
-        }
+       
     })
 }
