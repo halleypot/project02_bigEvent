@@ -1,15 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    
+    <title>Index Page</title>
+    <!-- important font css -->
+    <link rel="stylesheet" href="../assets/fonts/iconfont.css">
+    <!-- import layui css -->
+    <link rel="stylesheet" href="../assets/lib/layui/css/layui.css">
+    <!-- import index.css -->
+    <link rel="stylesheet" href="../assets/css/index.css">
+
+
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <!-- 头部区域 -->
+        <div class="layui-header">
+            <!-- header log -->
+            <div class="layui-logo">
+                <img src="../assets/images/logo.png" alt="">
+            </div>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                    <a href="javascript:;">
+                        <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
+                            class="layui-nav-img">
+                        <span class="text-avatar">P</span>
+                        <span>User Center</span>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">User Info</a></dd>
+                        <dd><a href="javascript:;">Change Icon</a></dd>
+                        <dd><a href="javascript:;">Change Password</a></dd>
+
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item" id="btnLogout">
+
+                    <a href="javascript:;">
+                        <span class="iconfont icon-tuichu"></span>Log Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!--left side nav bar -->
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <div class="userInfo">
+                    <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
+                        class="layui-nav-img">
+                    <span class="text-avatar">P</span>
+                    <span id="welcome">欢迎 P</span>
+
+                </div>
+                <!-- 左侧导航区域 -->
+                <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="test">
+
+                    <!-- 首页 -->
+                    <li class="layui-nav-item layui-this">
+                        <a href="./dashboard.html" target="screen">
+                            <span class="iconfont icon-home"></span>
+                            Home Page
+                        </a>
+                    </li>
+
+                    <!-- 文章管理 -->
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">
+                            <span class="iconfont icon-16"></span>文章管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-cols"></i> 文章类别</a></dd>
+                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-more"></i>文章列表</a></dd>
+                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-list"></i>发布文章</a></dd>
+
+                        </dl>
+                    </li>
+
+                    <!-- 个人中心 -->
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <span class="iconfont icon-user"></span>个人中心</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-tabs"></i>基本资料</a></dd>
+                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-tabs"></i>更换头像</a></dd>
+                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-tabs"></i>重置密码</a></dd>
+
+                        </dl>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <iframe src="./dashboard.html" frameborder="0" name="screen">
+            </iframe>
+            
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            @patrick worktree
+        </div>
+    </div>
+
+
+
+    <!--  import layui js-->
+    <script src="../assets/lib/layui/layui.all.js"></script>
     <!-- import jquery -->
     <script src="../assets/lib/jquery.js"></script>
-</head>
-<body>
-    <h1>index page</h1>
+    <!-- import baseAPI.js -->
+    <script src="../assets/js/baseAPI.js"></script>
+    <!-- import index.js -->
+    <script src="../assets/js/index.js"></script>
 </body>
+
 </html>
