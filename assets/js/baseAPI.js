@@ -8,7 +8,7 @@ $(function () {
 
         // set authorization for url starting at /my/
         if (option.url.indexOf('/my/') !== -1) {
-            option.header = {
+            option.headers = {
                 Authorization: localStorage.getItem('token')
             }
         }

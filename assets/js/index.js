@@ -60,12 +60,10 @@ function getUserInfo() {
         //     Authorization: localStorage.getItem('token')
         // },
         success: function (res) {
+            console.log(res);
             if (res.status !== 0) {
                 return layer.msg(res.message || '获取用户失败')
-                // remove token and relocate
-                // localStorage.removeItem('token')
-
-                // return location.href = '15_大事件案例/home/login.html'
+                
             }
 
             //渲染用户头像
