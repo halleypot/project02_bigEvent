@@ -58,7 +58,7 @@ $(function () {
     // 登录验证
     $('#form-login').on('submit', function (e) {
         e.preventDefault()
-
+       
         let data = $(this).serialize()
 
         $.post('/api/login', data, function (res) {
